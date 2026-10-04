@@ -1,8 +1,9 @@
 'use strict';
 (() => {
-  const VERSION = '2.0.0';
+  const VERSION = '2.0.1';
   const button = document.getElementById('update'), status = document.getElementById('update-status');
   document.getElementById('version').textContent = `v${VERSION}`;
+  document.getElementById('install-panel').hidden = false;
   const registration = 'serviceWorker' in navigator && location.protocol !== 'file:'
     ? navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => null)
     : Promise.resolve(null);

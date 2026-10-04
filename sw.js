@@ -1,4 +1,4 @@
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
 const CACHE = `pocket2048-v${VERSION}`;
 const ASSETS = ['./', './index.html', './style.css', './engine.js', './audio.js', './app.js', './updates.js', './icon.svg', './icon-192.png', './icon-512.png', './manifest.webmanifest'];
 self.addEventListener('install', event => {
