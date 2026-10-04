@@ -1,0 +1,46 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'io.github.devilzhu1985.pocket2048'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'io.github.devilzhu1985.pocket2048'
+        minSdk 26
+        targetSdk 35
+        versionCode 20000
+        versionName '2.0.0'
+    }
+    buildFeatures { buildConfig true }
+    signingConfigs {
+        release {
+            def keyPath = System.getenv('ANDROID_KEYSTORE_PATH')
+            if (keyPath) {
+                storeFile file(keyPath)
+                storeType 'PKCS12'
+                storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+                keyAlias 'pocket2048'
+                keyPassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            if (System.getenv('ANDROID_KEYSTORE_PATH')) signingConfig signingConfigs.release
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/gameAssets')
+}
+dependencies { implementation 'androidx.webkit:webkit:1.12.1' }
+
+def copyGame = tasks.register('copyGame', Sync) {
+    from(rootProject.projectDir.parentFile) {
+        include 'index.html', 'style.css', 'engine.js', 'app.js', 'audio.js', 'icon.svg', 'icon-192.png', 'icon-512.png', 'manifest.webmanifest'
+    }
+    into layout.buildDirectory.dir('generated/gameAssets')
+}
+tasks.named('preBuild').configure { dependsOn copyGame }
+
