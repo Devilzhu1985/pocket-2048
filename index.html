@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101d32"><meta name="description" content="A little focus. A little strategy. Play 2048 with a swipe.">
+<title>Pocket 2048</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><span class="brand">POCKET GAMES</span><span class="edition">No. 01</span></header>
+<section class="heading"><div><h1>2048<span>.</span></h1><p>Small moves. Big numbers.</p></div><div class="scores"><div><span>SCORE</span><strong id="score">0</strong></div><div><span>BEST</span><strong id="best">0</strong></div></div></section>
+<div class="toolbar"><p>Join the numbers. Reach <b>2048.</b></p><button id="new">New game</button></div>
+<div class="board-wrap"><div id="board" role="group" aria-label="2048 game board. Swipe or use arrow keys." tabindex="0"></div><div id="overlay" hidden><h2 id="message"></h2><p id="message-detail"></p><button id="continue" hidden>Keep playing</button><button id="retry">Play again</button></div></div>
+<div class="below"><span><i></i> Swipe to move</span><button id="undo" disabled>Undo move</button></div>
+<p id="announcement" class="sr-only" aria-live="polite"></p>
+<details><summary>How to play</summary><p>Swipe in any direction to slide all the tiles. Two matching tiles merge into one. Keep combining them to reach 2048!</p><p>On a computer, use the arrow keys or WASD. Your game saves automatically on this device.</p></details>
+<footer>A moment to play. <span>A number to chase.</span></footer>
+</main><script src="engine.js"></script><script src="app.js"></script>
+</body></html>
